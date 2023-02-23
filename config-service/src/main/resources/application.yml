@@ -8,5 +8,5 @@ spring:
     config:
       server:
         git:
-          uri: git@github.com:alsdud154/spring-cloud
+          uri: https://github.com/alsdud154/spring-cloud.git
           search-paths: config/
