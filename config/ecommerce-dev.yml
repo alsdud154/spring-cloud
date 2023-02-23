@@ -1,6 +1,6 @@
 token:
   expiration_time: 864000000
-  secret: my_token_dev#2
+  secret: my_token_dev_chasd
 
 gateway:
   ip: 192.168.0.8
