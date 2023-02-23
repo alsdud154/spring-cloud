@@ -8,4 +8,5 @@ spring:
     config:
       server:
         git:
-          uri: file:///Users/velnova/IdeaProjects/spring-cloud/config
+          uri: git@github.com:alsdud154/spring-cloud
+          search-paths: config/
