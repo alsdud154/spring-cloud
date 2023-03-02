@@ -2,3 +2,12 @@ spring:
   datasource:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:mem:testdb
+    username: sa
+    password: 1234
+
+token:
+  expiration_time: 864000000
+  secret: my_token_prod
+
+gateway:
+  ip: localhost
