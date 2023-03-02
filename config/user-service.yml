@@ -7,7 +7,7 @@ spring:
 
 token:
   expiration_time: 864000000
-  secret: my_token_prod
+  secret: '{cipher}AQBja2Ktbe39Bb4zzquf6EJX2qc8oj8/etQf7+u/E2xPS02/cezCussCEA5O6ynxr6+K0FHzC2oYtXBI5E7mJo9On5GS06ZHmURL8Q9RcA2BtDaat0osQC4Jv5+dX0LgUV91s6qA9RConk2kQoSEsbQWr5MptG/eqFaxjYQ76b2dfaT7ZiQQGIoJnoeGoJNknA+zZZxrrrtCDaXXowtm08LsoQAva1G/lTHM3OQ84hqJTXL6g6gySHVtMOCWqjMQAMOu5q9PCOCFdJVQM0Ir8TpKColUPrqWZVQIIk10dfSopBvdHLGlu9GSm+sWKd0Ay/t7ybeKn7dnGZ/3IIPvQixUkG73lsA4+xJIjHfBtGgGUHiyfMQrY1LJs12WDZcQ9wFhHnXe2jCsb0LEFIjW+xtT'
 
 gateway:
   ip: localhost
