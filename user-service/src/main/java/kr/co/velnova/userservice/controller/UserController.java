@@ -64,6 +64,5 @@ public class UserController {
     public ResponseUser getUser(@PathVariable String userId) {
         UserDto userDto = service.getUserByUserId(userId);
         return new ModelMapper().map(userDto, ResponseUser.class);
-
     }
 }
