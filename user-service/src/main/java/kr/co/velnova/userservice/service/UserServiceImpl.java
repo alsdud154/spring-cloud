@@ -1,16 +1,16 @@
 package kr.co.velnova.userservice.service;
 
+import feign.FeignException;
+import kr.co.velnova.userservice.client.OrderServiceClient;
 import kr.co.velnova.userservice.dto.UserDto;
 import kr.co.velnova.userservice.jpa.UserEntity;
 import kr.co.velnova.userservice.jpa.UserRepository;
 import kr.co.velnova.userservice.vo.ResponseOrder;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.env.Environment;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
@@ -30,6 +31,7 @@ public class UserServiceImpl implements UserService {
     private final BCryptPasswordEncoder passwordEncoder;
     private final Environment env;
     private final RestTemplate restTemplate;
+    private final OrderServiceClient orderServiceClient;
 
 
     @Override
@@ -64,12 +66,25 @@ public class UserServiceImpl implements UserService {
 //        List<ResponseOrder> orders = new ArrayList<>();
 
         /* Using as rest template */
-        String orderUrl = String.format(env.getProperty("order_service.url"), userId);
+//        String orderUrl = String.format(env.getProperty("order_service.url"), userId);
+//
+//        ResponseEntity<List<ResponseOrder>> ordersResponse = restTemplate.exchange(orderUrl, HttpMethod.GET, null, new ParameterizedTypeReference<List<ResponseOrder>>() {
+//        });
+//        List<ResponseOrder> orders = ordersResponse.getBody();
 
-        ResponseEntity<List<ResponseOrder>> ordersResponse = restTemplate.exchange(orderUrl, HttpMethod.GET, null, new ParameterizedTypeReference<List<ResponseOrder>>() {
-        });
+        /* Using as feign client */
+        /* Feign exception handling */
+//        List<ResponseOrder> orders = null;
+//        try {
+//
+//            orderServiceClient.getOrders(userId);
+//        } catch (FeignException e) {
+//            log.error("e = ", e);
+//        }
 
-        List<ResponseOrder> orders = ordersResponse.getBody();
+        /* Using ErrorDecoder */
+        List<ResponseOrder> orders = orderServiceClient.getOrders(userId);
+
         userDto.setOrders(orders);
 
         return userDto;
